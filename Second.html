@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Business Hub</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cream: #F5F0E8;
+    --dark: #1A1208;
+    --gold: #C9943A;
+    --gold-light: #E8B86D;
+    --brown: #3D2B1F;
+    --text: #2C1F14;
+  }
+
+  body {
+    background-color: var(--cream);
+    font-family: 'DM Sans', sans-serif;
+    color: var(--text);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  header {
+    background-color: var(--dark);
+    padding: 60px 40px 50px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    animation: fadeUp 0.7s ease both;
+  }
+
+  header::before {
+    content: '';
+    position: absolute;
+    top: -60px; left: 50%;
+    transform: translateX(-50%);
+    width: 600px; height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(201,148,58,0.18) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .eyebrow {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+  }
+
+  header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(36px, 6vw, 72px);
+    font-weight: 900;
+    color: #fff;
+    line-height: 1.05;
+    margin-bottom: 18px;
+  }
+
+  header h1 span { color: var(--gold-light); font-style: italic; }
+
+  header p {
+    color: rgba(255,255,255,0.55);
+    font-size: 15px;
+    font-weight: 300;
+    max-width: 420px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+
+  /* GOLD DIVIDER */
+  .divider {
+    height: 4px;
+    background: linear-gradient(90deg, transparent, var(--gold), var(--gold-light), var(--gold), transparent);
+  }
+
+  /* CARDS SECTION */
+  main {
+    padding: 70px 30px 80px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    text-align: center;
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 500;
+    margin-bottom: 50px;
+  }
+
+  /* ROW 1: Card 1 full-width */
+  .row-top {
+    display: flex;
+    margin-bottom: 28px;
+  }
+
+  .row-top .card {
+    flex: 1;
+    flex-direction: row;
+    align-items: stretch;
+  }
+
+  .row-top .card-top {
+    flex: 1;
+  }
+
+  .row-top .card-bottom {
+    display: flex;
+    align-items: center;
+    border-top: none;
+    border-left: 1px solid rgba(201,148,58,0.15);
+    padding: 28px 36px;
+    min-width: 180px;
+  }
+
+  .row-top .learn-btn {
+    white-space: nowrap;
+  }
+
+  /* ROW 2: Cards 2 & 3 side by side */
+  .row-bottom {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+  }
+
+  /* CARD BASE */
+  .card {
+    background: #fff;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 2px 20px rgba(26,18,8,0.07);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+  }
+
+  .card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 40px rgba(26,18,8,0.14);
+  }
+
+  .card-top {
+    padding: 36px 32px 28px;
+    flex: 1;
+    position: relative;
+  }
+
+  .card-accent {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 5px;
+  }
+
+  .card-1 .card-accent { background: var(--gold); }
+  .card-2 .card-accent { background: var(--brown); }
+  .card-3 .card-accent { background: var(--dark); }
+
+  .card-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 52px;
+    font-weight: 900;
+    color: rgba(201,148,58,0.12);
+    line-height: 1;
+    margin-bottom: 10px;
+  }
+
+  .card h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1.25;
+    margin-bottom: 14px;
+    color: var(--dark);
+  }
+
+  .card p {
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 1.75;
+    color: #6B5B4E;
+  }
+
+  .card-bottom {
+    padding: 20px 32px 28px;
+    border-top: 1px solid rgba(201,148,58,0.15);
+  }
+
+  .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--navy);
+      color: rgb(233, 110, 9);
+      padding: 14px 28px;
+      border-radius: 100px;
+      font-size: 15px;
+      font-weight: 500;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+  }
+
+  .learn-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--dark);
+    color: var(--gold-light);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 12px 24px;
+    border-radius: 2px;
+    transition: background 0.25s, color 0.25s, gap 0.25s;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .learn-btn:hover {
+    background: var(--gold);
+    color: var(--dark);
+    gap: 14px;
+  }
+
+  .learn-btn svg {
+    transition: transform 0.25s;
+  }
+
+  .learn-btn:hover svg {
+    transform: translateX(3px);
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--dark);
+    text-align: center;
+    padding: 28px;
+    color: rgba(255,255,255,0.3);
+    font-size: 12px;
+    letter-spacing: 1px;
+  }
+
+  footer span { color: var(--gold); }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .card-1 { animation: fadeUp 0.6s ease 0.1s both; }
+  .card-2 { animation: fadeUp 0.6s ease 0.25s both; }
+  .card-3 { animation: fadeUp 0.6s ease 0.4s both; }
+
+  /* RESPONSIVE */
+  @media (max-width: 680px) {
+    .row-top .card { flex-direction: column; }
+    .row-top .card-bottom {
+      border-left: none;
+      border-top: 1px solid rgba(201,148,58,0.15);
+      min-width: unset;
+    }
+    .row-bottom { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <p class="eyebrow">Таны бүрэн зааварчилгаа</p>
+  <h1>Бизнесийн</span> Төв</h1>
+  <p>Амжилттай бизнесийг ойлгох, эхлүүлэх, хөгжүүлэхэд хэрэгтэй бүх зүйл нэг дор.</p>
+</header>
+
+<div class="divider"></div>
+
+<main>
+  <p class="section-label">Бизнесийн амжилтын гурван тулгуур</p>
+
+  <div class="row-top">
+    <div class="card card-1">
+      <div class="card-top">
+        <div class="card-accent"></div>
+        <div class="card-number">01</div>
+        <h2>What Is Business?<br>
+            Бизнес гэж юу вэ?</h2>
+        <p>A business is an organization that creates value by offering products or services in exchange for money. Understanding the fundamentals from profit to market dynamics is the foundation of every great entrepreneur.<br>
+           Бизнес гэдэг нь мөнгөний оронд бүтээгдэхүүн, үйлчилгээг санал болгож үнэ цэнийг бий болгодог байгууллага юм. Ашиг орлогоос эхлээд зах зээлийн динамик хүртэлх үндсийг ойлгох нь агуу бизнес эрхлэгч бүрийн үндэс суурь юм.</p>
+      </div>
+      <div class="card-bottom">
+        <a href="https://www.youtube.com/watch?v=JJyLynh5d6M" target="_blank" class="learn-btn">
+          Learn
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M2 7H12M12 7L8 3M12 7L8 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="row-bottom">
+
+    <div class="card card-2">
+      <div class="card-top">
+        <div class="card-accent"></div>
+        <div class="card-number">02</div>
+        <h2>How to Start Your Own Business<br>
+            Хэрхэн өөрийн бизнесээ эхлүүлэх вэ?</h2>
+        <p>Turning an idea into a real business requires planning, legal setup, funding, and execution. Learn the step-by-step process from validating your idea to making your first sale and building your brand.<br>
+           Санаагаа бодит бизнес болгохын тулд төлөвлөлт, хууль эрх зүйн зохицуулалт, санхүүжилт, хэрэгжилтийг шаарддаг. Санаагаа баталгаажуулахаас эхлээд анхны борлуулалтаа хийх, брэндээ бий болгох хүртэл алхам алхмаар үйл явцыг сур.</p>
+      </div>
+      <div class="card-bottom">
+        <a href="https://www.youtube.com/watch?v=wxyGeUkPYFM" target="_blank" class="learn-btn">
+          Learn
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M2 7H12M12 7L8 3M12 7L8 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="card card-3">
+      <div class="card-top">
+        <div class="card-accent"></div>
+        <div class="card-number">03</div>
+        <h2>How to develop your business<br>
+            Бизнесээ хэрхэн хөгжүүлэх вэ</h2>
+        <p>Growth doesn't happen by accident. Discover proven strategies for scaling operations, expanding your customer base, increasing revenue, and building a sustainable business that thrives long-term.<br>
+           Өсөлт нь санамсаргүй тохиолддоггүй. Үйл ажиллагаагаа өргөжүүлэх, харилцагчийн баазаа тэлэх, орлогыг нэмэгдүүлэх, урт хугацаанд тогтвортой бизнесийг бий болгоход батлагдсан стратегиудыг олж мэдээрэй.</p>
+      </div>
+      <div class="card-bottom">
+        <a href="https://www.youtube.com/watch?v=UlB6VAD78kM" target="_blank" class="learn-btn">
+          Learn
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M2 7H12M12 7L8 3M12 7L8 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+  </div>
+  <div class="card-bottom">
+        <a href="Start.html" target="_blank" class="learn-btn">
+          Back
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M2 7H12M12 7L8 3M12 7L8 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+</main>
+
+<footer>
+  Бизнес эрхлэх хүсэлтэй хүмүүст зориулан бүтээгдсэн &nbsp;·&nbsp; <span>Бизнесийн төв</span>
+</footer>
+
+</body>
+</html>

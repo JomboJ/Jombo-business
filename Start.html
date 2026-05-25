@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>What is Business?</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+
+    :root {
+      --navy: #0f1f3d;
+      --blue: #1a5cff;
+      --sky: #c8deff;
+      --cream: #f7f4ef;
+      --gold: #e8b84b;
+      --text: #0f1f3d;
+      --muted: #5a6a8a;
+    }
+
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 48px;
+      background: rgba(247, 244, 239, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(15,31,61,0.08);
+    }
+
+
+    .nav-logo {
+      font-family: 'DM Serif Display', serif;
+      font-size: 20px;
+      color: var(--navy);
+      letter-spacing: -0.02em;
+    }
+
+
+    .nav-links { display: flex; gap: 32px; }
+
+
+    .nav-links a {
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--muted);
+      transition: color 0.2s;
+    }
+
+
+    .nav-links a:hover { color: var(--navy); }
+
+
+    .nav-cta {
+      background: var(--navy);
+      color: white !important;
+      padding: 9px 20px;
+      border-radius: 100px;
+      font-size: 13px !important;
+      font-weight: 500 !important;
+      transition: background 0.2s !important;
+    }
+
+
+    .nav-cta:hover { background: var(--blue) !important; color: white !important; }
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 120px 48px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -120px; right: -120px;
+      width: 600px; height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(26,92,255,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -80px; left: -80px;
+      width: 400px; height: 400px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(232,184,75,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    } 
+
+
+    .hero-inner {
+      max-width: 860px;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+
+    .hero-left { display: flex; flex-direction: column; gap: 28px; }
+
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      width: fit-content;
+      background: white;
+      border: 1px solid rgba(15,31,61,0.12);
+      border-radius: 100px;
+      padding: 6px 16px 6px 8px;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--muted);
+      animation: fadeUp 0.6s ease both;
+    }
+
+
+    .tag-dot {
+      width: 22px; height: 22px;
+      background: var(--blue);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+
+    .tag-dot::after {
+      content: '';
+      width: 6px; height: 6px;
+      background: white;
+      border-radius: 50%;
+    }
+
+
+    .hero-headline {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(42px, 6vw, 64px);
+      line-height: 1.08;
+      letter-spacing: -0.03em;
+      color: var(--navy);
+      animation: fadeUp 0.6s ease 0.1s both;
+    }
+
+
+    .hero-headline em { font-style: italic; color: var(--blue); }
+
+
+    .hero-desc {
+      font-size: 16px;
+      line-height: 1.75;
+      color: var(--muted);
+      font-weight: 300;
+      animation: fadeUp 0.6s ease 0.2s both;
+    }
+
+
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      animation: fadeUp 0.6s ease 0.3s both;
+    }
+
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--navy);
+      color: white;
+      padding: 14px 28px;
+      border-radius: 100px;
+      font-size: 15px;
+      font-weight: 500;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+    }
+
+
+    .btn-primary:hover { background: var(--blue); transform: translateY(-1px); }
+
+
+    .btn-arrow {
+      display: inline-block;
+      width: 20px; height: 20px;
+      background: rgba(255,255,255,0.2);
+      border-radius: 50%;
+      text-align: center;
+      line-height: 20px;
+      font-size: 12px;
+    }
+
+
+    .btn-secondary {
+      font-size: 14px;
+      color: var(--muted);
+      text-decoration: none;
+      padding: 14px 4px;
+      border-bottom: 1px solid transparent;
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+
+    .btn-secondary:hover { color: var(--navy); border-color: var(--navy); }
+
+    .hero-right { animation: fadeUp 0.6s ease 0.25s both; }
+
+
+    .visual-card {
+      background: white;
+      border: 1px solid rgba(15,31,61,0.10);
+      border-radius: 24px;
+      padding: 32px;
+      position: relative;
+      overflow: hidden;
+    }
+
+
+    .visual-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--blue), var(--gold));
+    }
+
+
+    .card-label {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 20px;
+    }
+
+
+    .definition-box {
+      background: var(--cream);
+      border-radius: 14px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+
+
+    .definition-box p {
+      font-family: 'DM Serif Display', serif;
+      font-size: 17px;
+      line-height: 1.55;
+      color: var(--navy);
+    }
+
+
+    .definition-box p em { font-style: italic; color: var(--blue); }
+
+
+    .stat-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      text-emphasis-color: var(--gold);
+    }
+
+
+    .stat-box {
+      background: var(--cream);
+      border-radius: 12px;
+      padding: 16px;
+    }
+
+
+    .stat-num {
+      font-family: 'DM Serif Display', serif;
+      font-size: 26px;
+      color: var(--navy);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+
+
+    .stat-desc { font-size: 11px; color: var(--muted); line-height: 1.4; }
+
+
+    .highlight-bar {
+      margin-top: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: #eef3ff;
+      border-radius: 10px;
+      padding: 12px 16px;
+    }
+
+
+    .highlight-icon {
+      width: 28px; height: 28px;
+      background: var(--blue);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 14px;
+      flex-shrink: 0;
+    }
+
+
+    .highlight-text { font-size: 12px; color: #1a3a8a; line-height: 1.4; }
+
+    .scroll-hint {
+      position: absolute;
+      bottom: 36px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      opacity: 0.4;
+      animation: fadeUp 0.6s ease 0.5s both;
+    }
+
+
+    .scroll-hint span {
+      font-size: 11px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+
+    .scroll-line {
+      width: 1px; height: 40px;
+      background: var(--muted);
+      animation: scrollPulse 1.5s ease infinite;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+
+    @keyframes scrollPulse {
+      0%, 100% { opacity: 0.3; transform: scaleY(1); }
+      50%       { opacity: 1;   transform: scaleY(1.15); }
+    }
+
+    @media (max-width: 700px) {
+      nav { padding: 16px 20px; }
+      .nav-links { display: none; }
+      .hero { padding: 100px 20px 80px; }
+      .hero-inner { grid-template-columns: 1fr; gap: 40px; }
+      .hero-right { order: -1; }
+    }
+  </style>
+</head>
+<body>
+
+
+  <nav>
+    <div class="nav-logo">What is Business?</div>
+    <div class="nav-links">
+      <a href="#">Танилцуулга</a>
+      <a href="#">Төрөл</a>
+      <a href="#">Функцууд</a>
+      <a href="#">Жишээ</a>
+      <a href="#" class="nav-cta">Сурч эхлэх</a>
+    </div>
+  </nav>
+
+
+  <section class="hero">
+    <div class="hero-inner">
+
+
+      <div class="hero-left">
+        <div class="hero-tag">
+          <div class="tag-dot"></div>
+          Суурь мэдлэг
+        </div>
+
+
+        <h1 class="hero-headline">
+        Бизнес<br/><em>гэж юу вэ?</em>
+        </h1>
+
+
+        <p class="hero-desc">
+          A business is any organization that creates value by providing goods or services to people — the engine that powers every economy in the world.<br>
+          Бяцхан нимбэгний ундаа зарж эхлээд дэлхийн корпораци хүртэл бараа, үйлчилгээ борлуулж үнэ цэнийг бий болгодог байгууллага юмаа.
+        </p>
+
+
+        <div class="hero-actions">
+          <a href="Second.html" class="btn-primary">
+            Сурч эхлэх<span class="btn-arrow">↓</span>
+          </a>
+          <a href="#" class="btn-secondary">Тойм үзэх →</a>
+        </div>
+      </div>
+      <div class="hero-right">
+        <div class="visual-card">
+          <div class="card-label">Энгийн ойлголт</div>
+
+          <div class="definition-box">
+            <p>An organization that <em>creates value</em> by selling goods or services — from a tiny lemonade stand to a global corporation.</p>
+          </div>
+
+          <div class="stat-row">
+            <div class="stat-box">
+              <div class="stat-num">333M+</div>
+              <div class="stat-desc">Businesses worldwide<br>
+                                     Дэлхийн бизнесын хүрээ</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-num">90%</div>
+              <div class="stat-desc">Are small businesses<br>
+                                     Жижиг бизнес</div>
+            </div>
+          </div>
+
+          <div class="highlight-bar">
+            <div class="highlight-icon">💡</div>
+            <div class="highlight-text">Every business — big or small — solves a problem for someone.</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="scroll-hint">
+      <span>Scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+</body>
+</html>
